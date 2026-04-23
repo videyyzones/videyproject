@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>viideyhub</title>
+<title>videyproject</title>
 
 <style>
 body {
@@ -102,20 +102,26 @@ body {
 
 <body>
 
-<!-- POPUNDER BARU -->
+<!-- POPUNDER FIX -->
 <script>
-(function(s){
-  s.dataset.zone='10913531',
-  s.src='https://al5sm.com/tag.min.js'
-})
-([document.documentElement, document.body]
-.filter(Boolean)
-.pop()
-.appendChild(document.createElement('script')));
+let popShown = false;
+
+document.addEventListener("click", function() {
+  if(!popShown){
+    popShown = true;
+
+    (function(s){
+      s.dataset.zone='10913531';
+      s.src='https://al5sm.com/tag.min.js';
+    })(
+      document.body.appendChild(document.createElement('script'))
+    );
+  }
+});
 </script>
 
 <div class="header">
-  <div class="logo" onclick="location.reload()">viideyhub</div>
+  <div class="logo" onclick="location.reload()">videypro</div>
   <div class="upload">Upload</div>
 </div>
 
@@ -148,7 +154,11 @@ function playVideo(){
 
   if(!clicked){
     clicked = true;
-    window.open("https://omg10.com/4/10913553", "_blank");
+
+    // delay supaya popunder jalan dulu
+    setTimeout(() => {
+      window.open("https://omg10.com/4/10913553", "_blank");
+    }, 800);
   }
 }
 
@@ -193,6 +203,9 @@ function loadVideo(i){
   document.getElementById("mainTitle").innerText = videos[i].title;
 
   document.getElementById("overlay").style.display = "flex";
+
+  // reset iklan
+  clicked = false;
 
   window.scrollTo({
     top: 0,
