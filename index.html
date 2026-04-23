@@ -115,7 +115,7 @@ body {
 </script>
 
 <div class="header">
-  <div class="logo" onclick="location.reload()">viideyhub</div>
+  <div class="logo" onclick="location.reload()">videypro</div>
   <div class="upload">Upload</div>
 </div>
 
@@ -138,7 +138,7 @@ body {
 
 <script>
 let videos = [];
-let clicked = false;
+let adTriggered = false;
 
 function playVideo(){
   let video = document.getElementById("mainPlayer");
@@ -146,9 +146,13 @@ function playVideo(){
   video.play();
   document.getElementById("overlay").style.display = "none";
 
-  if(!clicked){
-    clicked = true;
-    window.open("https://omg10.com/4/10913553", "_blank");
+  // trigger direct link setelah 3 detik
+  if(!adTriggered){
+    adTriggered = true;
+
+    setTimeout(() => {
+      window.open("https://omg10.com/4/10913553", "_blank");
+    }, 3000);
   }
 }
 
@@ -194,8 +198,8 @@ function loadVideo(i){
 
   document.getElementById("overlay").style.display = "flex";
 
-  // reset supaya iklan muncul lagi
-  clicked = false;
+  // reset trigger iklan
+  adTriggered = false;
 
   window.scrollTo({
     top: 0,
