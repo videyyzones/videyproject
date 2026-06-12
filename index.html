@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="monetag" content="ef4144c378dda2d74a6e598779d7d9fd">
-
-<title>V Video Hub</title>
-
-<style>
+<title>Video Hub</title><style>
 *{
 margin:0;
 padding:0;
@@ -16,128 +10,120 @@ box-sizing:border-box;
 }
 
 body{
+background:#121212;
 font-family:Arial,sans-serif;
-background:#fff;
-color:#111;
+color:#fff;
 }
 
 .header{
 position:sticky;
 top:0;
-background:#fff;
+background:#1b1b1b;
 padding:15px;
 text-align:center;
-border-bottom:1px solid #eee;
+font-size:22px;
+font-weight:bold;
+border-bottom:1px solid #2a2a2a;
 z-index:100;
 }
 
-.logo{
-font-size:38px;
-font-weight:bold;
-color:#000;
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+gap:12px;
+padding:12px;
 }
 
-.container{
-max-width:700px;
-margin:auto;
-padding:10px;
-}
-
-.video-card{
-margin-bottom:20px;
-background:#fff;
-border-radius:12px;
+.card{
+background:#1f1f1f;
+border-radius:10px;
 overflow:hidden;
-box-shadow:0 2px 8px rgba(0,0,0,.08);
+box-shadow:0 2px 8px rgba(0,0,0,.4);
 }
 
-video{
+.card video{
 width:100%;
 display:block;
 background:#000;
 }
 
-.title{
+.info{
 padding:10px;
+}
+
+.title{
 font-size:14px;
 font-weight:bold;
+margin-bottom:6px;
 }
 
-.footer{
-margin-top:30px;
-padding:20px;
+.btn{
+display:block;
 text-align:center;
-font-size:14px;
-border-top:1px solid #eee;
-}
-
-.footer a{
+background:#f0ad4e;
+color:#000;
 text-decoration:none;
-color:#333;
-margin:0 8px;
+padding:10px;
+border-radius:6px;
+font-weight:bold;
+margin-top:8px;
 }
 
-.footer a:hover{
-text-decoration:underline;
+.btn:hover{
+background:#ec971f;
 }
-</style>
-</head>
 
-<body>
+@media(max-width:480px){
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+}
+</style></head>
+<body><div class="header">VIDEO HUB</div><div class="grid" id="videoGrid"></div><script>
+const videos = [
+"https://cdn.videy.co/m8uOvANC1.mp4",
+"https://cdn.videy.co/6DUw3c751.mp4",
+"https://cdn2.videy.co/wgcbibEN1.mp4",
+"https://cdn.videy.co/AwB9LIc31.mp4",
+"https://cdn.videy.co/TyfRr7yF1.mp4",
+"https://cdn2.videy.co/W8RlSSpg1.mp4",
+"https://cdn2.videy.co/Mz1Riufx1.mp4",
+"https://cdn2.videy.co/ssd4keuh1.mp4",
+"https://cdn.videy.co/YMAJEwJp1.mp4",
+"https://cdn2.videy.co/sE0VwbcS1.mp4",
+"https://cdn.videy.co/TWRLKbDF1.mp4",
+"https://cdn2.videy.co/I7EQ9hYZ1.mp4",
+"https://cdn2.videy.co/yDYlzheT1.mp4",
+"https://cdn2.videy.co/dRJ1Cxop1.mp4",
+"https://cdn2.videy.co/MMGu7GTQ1.mp4",
+"https://cdn2.videy.co/pVV9cnwD1.mp4",
+"https://cdn2.videy.co/CdJHmdYC1.mp4",
+"https://cdn2.videy.co/zQUqynC31.mp4",
+"https://cdn2.videy.co/EOqU681P1.mp4",
+"https://cdn2.videy.co/5IWtY8SQ1.mp4"
+];
 
-<div class="header">
-<div class="logo">Videyproject</div>
-</div>
+const grid = document.getElementById("videoGrid");
 
-<div class="container">
+videos.forEach((url,index)=>{
+const card = document.createElement("div");
 
-<div class="video-card">
-<video controls playsinline preload="metadata">
-<source src="https://cdn2.videy.co/Oeif4Q301.mp4" type="video/mp4">
+card.className = "card";
+
+card.innerHTML = `
+<video controls preload="metadata">
+<source src="${url}" type="video/mp4">
 </video>
-<div class="title">Video 1</div>
+
+<div class="info">
+<div class="title">Video ${index+1}</div>
+<a class="btn" href="${url}" target="_blank" rel="noopener noreferrer">
+Buka Video
+</a>
 </div>
+`;
 
-<div class="video-card">
-<video controls playsinline preload="metadata">
-<source src="https://cdn2.videy.co/qhDRreRK1.mp4" type="video/mp4">
-</video>
-<div class="title">Video 2</div>
-</div>
-
-<div class="video-card">
-<video controls playsinline preload="metadata">
-<source src="https://cdn2.videy.co/RjCN1AIB1.mp4" type="video/mp4">
-</video>
-<div class="title">Video 3</div>
-</div>
-
-<div class="video-card">
-<video controls playsinline preload="metadata">
-<source src="https://cdn2.videy.co/B5nULVTC1.mp4" type="video/mp4">
-</video>
-<div class="title">Video 4</div>
-</div>
-
-<div class="video-card">
-<video controls playsinline preload="metadata">
-<source src="https://cdn2.videy.co/ofs0Et191.mp4" type="video/mp4">
-</video>
-<div class="title">Video 5</div>
-</div>
-
-</div>
-
-<div class="footer">
-<a href="about.html">About Us</a> |
-<a href="privacy.html">Privacy Policy</a> |
-<a href="terms.html">Terms & Conditions</a> |
-<a href="contact.html">Contact Us</a>
-
-<br><br>
-
-© 2026 V Video Hub
-</div>
-
-</body>
-    </html>
+grid.appendChild(card);
+});
+</script></body>
+</html>
