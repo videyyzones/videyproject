@@ -1,8 +1,8 @@
 <!DOCTYPE html><html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Video Hub</title><style>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>V Video Hub</title><style>
 *{
 margin:0;
 padding:0;
@@ -10,7 +10,7 @@ box-sizing:border-box;
 }
 
 body{
-background:#121212;
+background:#0f0f0f;
 font-family:Arial,sans-serif;
 color:#fff;
 }
@@ -18,33 +18,81 @@ color:#fff;
 .header{
 position:sticky;
 top:0;
-background:#1b1b1b;
+z-index:100;
+background:#111;
+border-bottom:1px solid #222;
 padding:15px;
 text-align:center;
-font-size:22px;
-font-weight:bold;
-border-bottom:1px solid #2a2a2a;
-z-index:100;
+}
+
+.logo{
+font-size:34px;
+font-weight:900;
+letter-spacing:2px;
+}
+
+.sub{
+font-size:12px;
+color:#999;
+margin-top:4px;
 }
 
 .grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-gap:12px;
 padding:12px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+max-width:900px;
+margin:auto;
 }
 
 .card{
-background:#1f1f1f;
-border-radius:10px;
+background:#181818;
+border-radius:14px;
 overflow:hidden;
-box-shadow:0 2px 8px rgba(0,0,0,.4);
+box-shadow:0 4px 12px rgba(0,0,0,.4);
+transition:.2s;
+text-decoration:none;
 }
 
-.card video{
-width:100%;
-display:block;
-background:#000;
+.card:hover{
+transform:translateY(-3px);
+}
+
+.thumb{
+position:relative;
+aspect-ratio:9/16;
+background:linear-gradient(135deg,#000,#222);
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.vlogo{
+font-size:60px;
+font-weight:900;
+color:#fff;
+opacity:.95;
+}
+
+.play{
+position:absolute;
+width:58px;
+height:58px;
+border-radius:50%;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(5px);
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.play:before{
+content:"";
+margin-left:4px;
+border-top:12px solid transparent;
+border-bottom:12px solid transparent;
+border-left:18px solid white;
 }
 
 .info{
@@ -52,78 +100,106 @@ padding:10px;
 }
 
 .title{
-font-size:14px;
+font-size:13px;
 font-weight:bold;
+line-height:1.4;
 margin-bottom:6px;
 }
 
-.btn{
-display:block;
+.meta{
+font-size:11px;
+color:#aaa;
+}
+
+.footer{
+padding:20px;
 text-align:center;
-background:#f0ad4e;
-color:#000;
-text-decoration:none;
-padding:10px;
-border-radius:6px;
-font-weight:bold;
-margin-top:8px;
+font-size:12px;
+color:#666;
 }
 
-.btn:hover{
-background:#ec971f;
-}
-
-@media(max-width:480px){
+@media(min-width:768px){
 .grid{
-grid-template-columns:repeat(2,1fr);
+grid-template-columns:repeat(4,1fr);
 }
 }
 </style></head>
-<body><div class="header">VIDEO HUB</div><div class="grid" id="videoGrid"></div><script>
-const videos = [
-"https://cdn.videy.co/m8uOvANC1.mp4",
-"https://cdn.videy.co/6DUw3c751.mp4",
-"https://cdn2.videy.co/wgcbibEN1.mp4",
-"https://cdn.videy.co/AwB9LIc31.mp4",
-"https://cdn.videy.co/TyfRr7yF1.mp4",
-"https://cdn2.videy.co/W8RlSSpg1.mp4",
-"https://cdn2.videy.co/Mz1Riufx1.mp4",
-"https://cdn2.videy.co/ssd4keuh1.mp4",
-"https://cdn.videy.co/YMAJEwJp1.mp4",
-"https://cdn2.videy.co/sE0VwbcS1.mp4",
-"https://cdn.videy.co/TWRLKbDF1.mp4",
-"https://cdn2.videy.co/I7EQ9hYZ1.mp4",
-"https://cdn2.videy.co/yDYlzheT1.mp4",
-"https://cdn2.videy.co/dRJ1Cxop1.mp4",
-"https://cdn2.videy.co/MMGu7GTQ1.mp4",
-"https://cdn2.videy.co/pVV9cnwD1.mp4",
-"https://cdn2.videy.co/CdJHmdYC1.mp4",
-"https://cdn2.videy.co/zQUqynC31.mp4",
-"https://cdn2.videy.co/EOqU681P1.mp4",
-"https://cdn2.videy.co/5IWtY8SQ1.mp4"
-];
-
-const grid = document.getElementById("videoGrid");
-
-videos.forEach((url,index)=>{
-const card = document.createElement("div");
-
-card.className = "card";
-
-card.innerHTML = `
-<video controls preload="metadata">
-<source src="${url}" type="video/mp4">
-</video>
-
-<div class="info">
-<div class="title">Video ${index+1}</div>
-<a class="btn" href="${url}" target="_blank" rel="noopener noreferrer">
-Buka Video
-</a>
+<body><div class="header">
+<div class="logo">V</div>
+<div class="sub">Video Hub</div>
+</div><div class="grid"><a class="card" href="https://cdn.videy.co/m8uOvANC1.mp4" target="_blank">
+<div class="thumb">
+<div class="play"></div>
+<div class="vlogo">V</div>
 </div>
-`;
-
-grid.appendChild(card);
-});
-</script></body>
-</html>
+<div class="info">
+<div class="title">Video 1</div>
+<div class="meta">Tap untuk menonton</div>
+</div>
+</a><a class="card" href="https://cdn.videy.co/6DUw3c751.mp4" target="_blank">
+<div class="thumb">
+<div class="play"></div>
+<div class="vlogo">V</div>
+</div>
+<div class="info">
+<div class="title">Video 2</div>
+<div class="meta">Tap untuk menonton</div>
+</div>
+</a><a class="card" href="https://cdn2.videy.co/wgcbibEN1.mp4" target="_blank">
+<div class="thumb">
+<div class="play"></div>
+<div class="vlogo">V</div>
+</div>
+<div class="info">
+<div class="title">Video 3</div>
+<div class="meta">Tap untuk menonton</div>
+</div>
+</a><a class="card" href="https://cdn.videy.co/AwB9LIc31.mp4" target="_blank">
+<div class="thumb">
+<div class="play"></div>
+<div class="vlogo">V</div>
+</div>
+<div class="info">
+<div class="title">Video 4</div>
+<div class="meta">Tap untuk menonton</div>
+</div>
+</a><a class="card" href="https://cdn.videy.co/TyfRr7yF1.mp4" target="_blank">
+<div class="thumb">
+<div class="play"></div>
+<div class="vlogo">V</div>
+</div>
+<div class="info">
+<div class="title">Video 5</div>
+<div class="meta">Tap untuk menonton</div>
+</div>
+</a><a class="card" href="https://cdn2.videy.co/W8RlSSpg1.mp4" target="_blank">
+<div class="thumb">
+<div class="play"></div>
+<div class="vlogo">V</div>
+</div>
+<div class="info">
+<div class="title">Video 6</div>
+<div class="meta">Tap untuk menonton</div>
+</div>
+</a><a class="card" href="https://cdn2.videy.co/Mz1Riufx1.mp4" target="_blank">
+<div class="thumb">
+<div class="play"></div>
+<div class="vlogo">V</div>
+</div>
+<div class="info">
+<div class="title">Video 7</div>
+<div class="meta">Tap untuk menonton</div>
+</div>
+</a><a class="card" href="https://cdn2.videy.co/ssd4keuh1.mp4" target="_blank">
+<div class="thumb">
+<div class="play"></div>
+<div class="vlogo">V</div>
+</div>
+<div class="info">
+<div class="title">Video 8</div>
+<div class="meta">Tap untuk menonton</div>
+</div>
+</a></div><div class="footer">
+© V Video Hub
+</div></body>
+                    </html>
