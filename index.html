@@ -1,205 +1,675 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>V Video Hub</title><style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>VIRAL TERKINI</title>
+  <meta name="description" content="Kumpulan video terbaru dan terpopuler.">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background: #080808;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      transition: .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+    }
+
+    .video-thumb {
+      background:
+        linear-gradient(135deg, #1a1a1a, #080808);
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="sticky top-0 z-40 border-b border-white/10 bg-black/95 backdrop-blur">
+
+  <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+
+    <div class="flex items-center gap-2">
+      <div class="w-9 h-9 rounded-lg bg-red-600 flex items-center justify-center">
+        <i data-lucide="play" class="w-5 h-5 fill-white"></i>
+      </div>
+
+      <div>
+        <h1 class="font-black text-lg leading-none">
+          VIRAL<span class="text-red-500">TERKINI</span>
+        </h1>
+
+        <p class="text-[10px] text-gray-500">
+          VIDEO COLLECTION
+        </p>
+      </div>
+    </div>
+
+    <div class="hidden md:flex flex-1 max-w-md relative">
+
+      <i data-lucide="search"
+         class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500">
+      </i>
+
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="Cari video..."
+        class="w-full bg-white/5 border border-white/10 rounded-full py-2 pl-10 pr-4 outline-none focus:border-red-500"
+      >
+
+    </div>
+
+    <button
+      onclick="toggleMobileSearch()"
+      class="md:hidden p-2 rounded-lg bg-white/5">
+      <i data-lucide="search"></i>
+    </button>
+
+  </div>
+
+  <!-- Mobile Search -->
+  <div id="mobileSearch" class="hidden px-4 pb-3 md:hidden">
+
+    <input
+      id="mobileSearchInput"
+      type="search"
+      placeholder="Cari video..."
+      class="w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 outline-none focus:border-red-500"
+    >
+
+  </div>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+<main class="max-w-7xl mx-auto px-4 py-6">
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-r from-red-950/60 to-black p-6 md:p-10 mb-8">
+
+    <div class="max-w-2xl">
+
+      <div class="inline-flex items-center gap-2 bg-red-600/20 text-red-400 px-3 py-1 rounded-full text-xs font-bold mb-4">
+
+        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+
+        VIDEO TERBARU
+
+      </div>
+
+      <h2 class="text-3xl md:text-5xl font-black mb-4">
+        Kumpulan Video
+        <span class="text-red-500">Viral</span>
+      </h2>
+
+      <p class="text-gray-400 max-w-xl">
+        Temukan berbagai video terbaru dan populer dalam satu tempat.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ADSTERRA 728x90 -->
+  <div class="flex justify-center overflow-hidden mb-8">
+
+    <div style="width:728px;max-width:100%;">
+
+      <script>
+        atOptions = {
+          'key' : '01fe5a1681d1f45f0375a42afa1b8c9f',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+
+      <script src="https://conductivebreeds.com/01fe5a1681d1f45f0375a42afa1b8c9f/invoke.js"></script>
+
+    </div>
+
+  </div>
+
+
+  <!-- TITLE -->
+  <div class="flex items-center justify-between mb-5">
+
+    <div>
+      <h2 class="text-xl md:text-2xl font-black">
+        Video Terbaru
+      </h2>
+
+      <p id="videoCount" class="text-sm text-gray-500 mt-1">
+        5 video tersedia
+      </p>
+    </div>
+
+  </div>
+
+
+  <!-- VIDEO GRID -->
+  <section
+    id="videoGrid"
+    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+  </section>
+
+
+  <!-- ADSTERRA 300x250 -->
+  <div class="flex justify-center my-10 overflow-hidden">
+
+    <div style="width:300px;height:250px;">
+
+      <script>
+        atOptions = {
+          'key' : '9d3319224168631f06c37c7f2f561efd',
+          'format' : 'iframe',
+          'height' : 250,
+          'width' : 300,
+          'params' : {}
+        };
+      </script>
+
+      <script src="https://conductivebreeds.com/9d3319224168631f06c37c7f2f561efd/invoke.js"></script>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<!-- ================= PLAYER MODAL ================= -->
+<div
+  id="playerModal"
+  class="hidden fixed inset-0 z-50 bg-black/95 p-3 md:p-8">
+
+  <div class="w-full max-w-5xl mx-auto h-full flex flex-col justify-center">
+
+    <div class="flex items-center justify-between mb-3">
+
+      <div>
+
+        <h3 id="playerTitle"
+            class="font-bold text-lg">
+          Video
+        </h3>
+
+        <p class="text-xs text-gray-500">
+          VIRAL TERKINI
+        </p>
+
+      </div>
+
+      <button
+        onclick="closePlayer()"
+        class="w-10 h-10 rounded-full bg-white/10 hover:bg-red-600 flex items-center justify-center">
+
+        <i data-lucide="x"></i>
+
+      </button>
+
+    </div>
+
+
+    <div class="relative bg-black rounded-xl overflow-hidden border border-white/10">
+
+      <video
+        id="videoPlayer"
+        controls
+        playsinline
+        preload="metadata"
+        class="w-full max-h-[75vh] bg-black">
+      </video>
+
+    </div>
+
+
+    <div class="flex gap-3 mt-4">
+
+      <button
+        onclick="openDirectLink()"
+        class="flex-1 bg-red-600 hover:bg-red-700 py-3 rounded-xl font-bold flex items-center justify-center gap-2">
+
+        <i data-lucide="external-link" class="w-4 h-4"></i>
+
+        Buka Tautan
+
+      </button>
+
+      <button
+        onclick="closePlayer()"
+        class="px-5 bg-white/10 hover:bg-white/20 rounded-xl">
+
+        Tutup
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+<div
+  id="toast"
+  class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[60] hidden">
+
+  <div class="bg-white text-black px-5 py-3 rounded-full shadow-xl text-sm font-bold">
+    <span id="toastText"></span>
+  </div>
+
+</div>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+
+const DIRECT_LINK =
+  "https://conductivebreeds.com/ivhgr2by9x?key=d5887de29582e2ed00a34f4151b7b74a";
+
+
+/*
+=========================================================
+5 VIDEO UNTUK TEST
+=========================================================
+*/
+
+const videos = [
+
+  {
+    id: 1,
+    title: "Video Viral #1",
+    url: "https://cdn2.videy.co/07NDkyml1.mp4"
+  },
+
+  {
+    id: 2,
+    title: "Video Viral #2",
+    url: "https://cdn2.videy.co/Y5LOOOWu1.mp4"
+  },
+
+  {
+    id: 3,
+    title: "Video Viral #3",
+    url: "https://cdn2.videy.co/e8iqLicw1.mp4"
+  },
+
+  {
+    id: 4,
+    title: "Video Viral #4",
+    url: "https://cdn2.videy.co/B8X4JDBe1.mp4"
+  },
+
+  {
+    id: 5,
+    title: "Video Viral #5",
+    url: "https://cdn2.videy.co/2QjJLeH41.mp4"
+  }
+
+];
+
+
+let currentVideo = null;
+
+
+/*
+=========================================================
+RENDER VIDEO
+=========================================================
+*/
+
+function renderVideos(list = videos) {
+
+  const grid = document.getElementById("videoGrid");
+
+  grid.innerHTML = "";
+
+  document.getElementById("videoCount").textContent =
+    `${list.length} video tersedia`;
+
+
+  if (list.length === 0) {
+
+    grid.innerHTML = `
+      <div class="col-span-full py-16 text-center">
+
+        <i data-lucide="search-x"
+           class="w-12 h-12 mx-auto text-gray-600 mb-4">
+        </i>
+
+        <p class="text-gray-400">
+          Video tidak ditemukan.
+        </p>
+
+      </div>
+    `;
+
+    lucide.createIcons();
+
+    return;
+  }
+
+
+  list.forEach((video, index) => {
+
+    const card = document.createElement("article");
+
+    card.className =
+      "card group cursor-pointer";
+
+    card.innerHTML = `
+
+      <div
+        onclick="openPlayer(${video.id})"
+        class="video-thumb relative aspect-[9/13] rounded-xl overflow-hidden border border-white/10">
+
+        <div class="absolute inset-0
+          bg-gradient-to-t from-black via-black/20 to-transparent">
+        </div>
+
+        <div class="absolute inset-0 flex items-center justify-center">
+
+          <div
+            class="w-14 h-14 rounded-full bg-red-600 group-hover:bg-red-500
+            group-hover:scale-110 transition flex items-center justify-center shadow-xl">
+
+            <i data-lucide="play"
+               class="w-6 h-6 fill-white ml-1">
+            </i>
+
+          </div>
+
+        </div>
+
+        <div
+          class="absolute top-3 left-3 bg-red-600 px-2 py-1 rounded-md text-[10px] font-black">
+
+          VIRAL
+
+        </div>
+
+        <div
+          class="absolute bottom-3 left-3 right-3">
+
+          <div class="text-xs text-gray-300">
+            Video #${index + 1}
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="pt-3">
+
+        <h3
+          class="font-bold text-sm line-clamp-2 group-hover:text-red-400 transition">
+
+          ${escapeHTML(video.title)}
+
+        </h3>
+
+        <p class="text-xs text-gray-500 mt-1">
+          Video Viral
+        </p>
+
+      </div>
+
+    `;
+
+    grid.appendChild(card);
+
+  });
+
+
+  lucide.createIcons();
+
 }
 
-body{
-background:#0f0f0f;
-font-family:Arial,sans-serif;
-color:#fff;
+
+/*
+=========================================================
+OPEN PLAYER
+=========================================================
+*/
+
+function openPlayer(id) {
+
+  const video = videos.find(v => v.id === id);
+
+  if (!video) return;
+
+  currentVideo = video;
+
+  const modal =
+    document.getElementById("playerModal");
+
+  const player =
+    document.getElementById("videoPlayer");
+
+  const title =
+    document.getElementById("playerTitle");
+
+
+  title.textContent = video.title;
+
+  player.pause();
+
+  player.src = video.url;
+
+  player.load();
+
+
+  modal.classList.remove("hidden");
+
+  document.body.style.overflow = "hidden";
+
+
+  player.play().catch(() => {
+    // Autoplay mungkin diblokir browser.
+  });
+
 }
 
-.header{
-position:sticky;
-top:0;
-z-index:100;
-background:#111;
-border-bottom:1px solid #222;
-padding:15px;
-text-align:center;
+
+/*
+=========================================================
+CLOSE PLAYER
+=========================================================
+*/
+
+function closePlayer() {
+
+  const modal =
+    document.getElementById("playerModal");
+
+  const player =
+    document.getElementById("videoPlayer");
+
+
+  player.pause();
+
+  player.removeAttribute("src");
+
+  player.load();
+
+
+  modal.classList.add("hidden");
+
+  document.body.style.overflow = "";
+
+  currentVideo = null;
+
 }
 
-.logo{
-font-size:34px;
-font-weight:900;
-letter-spacing:2px;
+
+/*
+=========================================================
+DIRECT LINK
+=========================================================
+*/
+
+function openDirectLink() {
+
+  window.open(
+    DIRECT_LINK,
+    "_blank",
+    "noopener,noreferrer"
+  );
+
 }
 
-.sub{
-font-size:12px;
-color:#999;
-margin-top:4px;
+
+/*
+=========================================================
+SEARCH
+=========================================================
+*/
+
+function searchVideos(keyword) {
+
+  keyword =
+    keyword.toLowerCase().trim();
+
+
+  const filtered =
+    videos.filter(video =>
+      video.title.toLowerCase().includes(keyword)
+    );
+
+
+  renderVideos(filtered);
+
 }
 
-.grid{
-padding:12px;
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:12px;
-max-width:900px;
-margin:auto;
+
+document
+  .getElementById("searchInput")
+  .addEventListener("input", function() {
+
+    searchVideos(this.value);
+
+  });
+
+
+document
+  .getElementById("mobileSearchInput")
+  .addEventListener("input", function() {
+
+    searchVideos(this.value);
+
+  });
+
+
+/*
+=========================================================
+MOBILE SEARCH
+=========================================================
+*/
+
+function toggleMobileSearch() {
+
+  const box =
+    document.getElementById("mobileSearch");
+
+  box.classList.toggle("hidden");
+
 }
 
-.card{
-background:#181818;
-border-radius:14px;
-overflow:hidden;
-box-shadow:0 4px 12px rgba(0,0,0,.4);
-transition:.2s;
-text-decoration:none;
+
+/*
+=========================================================
+ESCAPE HTML
+=========================================================
+*/
+
+function escapeHTML(text) {
+
+  const div =
+    document.createElement("div");
+
+  div.textContent = text;
+
+  return div.innerHTML;
+
 }
 
-.card:hover{
-transform:translateY(-3px);
-}
 
-.thumb{
-position:relative;
-aspect-ratio:9/16;
-background:linear-gradient(135deg,#000,#222);
-display:flex;
-align-items:center;
-justify-content:center;
-}
+/*
+=========================================================
+ESC CLOSE
+=========================================================
+*/
 
-.vlogo{
-font-size:60px;
-font-weight:900;
-color:#fff;
-opacity:.95;
-}
+document.addEventListener("keydown", function(e) {
 
-.play{
-position:absolute;
-width:58px;
-height:58px;
-border-radius:50%;
-background:rgba(255,255,255,.15);
-backdrop-filter:blur(5px);
-display:flex;
-align-items:center;
-justify-content:center;
-}
+  if (e.key === "Escape") {
 
-.play:before{
-content:"";
-margin-left:4px;
-border-top:12px solid transparent;
-border-bottom:12px solid transparent;
-border-left:18px solid white;
-}
+    closePlayer();
 
-.info{
-padding:10px;
-}
+  }
 
-.title{
-font-size:13px;
-font-weight:bold;
-line-height:1.4;
-margin-bottom:6px;
-}
+});
 
-.meta{
-font-size:11px;
-color:#aaa;
-}
 
-.footer{
-padding:20px;
-text-align:center;
-font-size:12px;
-color:#666;
-}
+/*
+=========================================================
+CLICK OUTSIDE MODAL
+=========================================================
+*/
 
-@media(min-width:768px){
-.grid{
-grid-template-columns:repeat(4,1fr);
-}
-}
-</style></head>
-<body><div class="header">
-<div class="logo">V</div>
-<div class="sub">Video Hub</div>
-</div><div class="grid"><a class="card" href="https://cdn.videy.co/m8uOvANC1.mp4" target="_blank">
-<div class="thumb">
-<div class="play"></div>
-<div class="vlogo">V</div>
-</div>
-<div class="info">
-<div class="title">Video 1</div>
-<div class="meta">Tap untuk menonton</div>
-</div>
-</a><a class="card" href="https://cdn.videy.co/6DUw3c751.mp4" target="_blank">
-<div class="thumb">
-<div class="play"></div>
-<div class="vlogo">V</div>
-</div>
-<div class="info">
-<div class="title">Video 2</div>
-<div class="meta">Tap untuk menonton</div>
-</div>
-</a><a class="card" href="https://cdn2.videy.co/wgcbibEN1.mp4" target="_blank">
-<div class="thumb">
-<div class="play"></div>
-<div class="vlogo">V</div>
-</div>
-<div class="info">
-<div class="title">Video 3</div>
-<div class="meta">Tap untuk menonton</div>
-</div>
-</a><a class="card" href="https://cdn.videy.co/AwB9LIc31.mp4" target="_blank">
-<div class="thumb">
-<div class="play"></div>
-<div class="vlogo">V</div>
-</div>
-<div class="info">
-<div class="title">Video 4</div>
-<div class="meta">Tap untuk menonton</div>
-</div>
-</a><a class="card" href="https://cdn.videy.co/TyfRr7yF1.mp4" target="_blank">
-<div class="thumb">
-<div class="play"></div>
-<div class="vlogo">V</div>
-</div>
-<div class="info">
-<div class="title">Video 5</div>
-<div class="meta">Tap untuk menonton</div>
-</div>
-</a><a class="card" href="https://cdn2.videy.co/W8RlSSpg1.mp4" target="_blank">
-<div class="thumb">
-<div class="play"></div>
-<div class="vlogo">V</div>
-</div>
-<div class="info">
-<div class="title">Video 6</div>
-<div class="meta">Tap untuk menonton</div>
-</div>
-</a><a class="card" href="https://cdn2.videy.co/Mz1Riufx1.mp4" target="_blank">
-<div class="thumb">
-<div class="play"></div>
-<div class="vlogo">V</div>
-</div>
-<div class="info">
-<div class="title">Video 7</div>
-<div class="meta">Tap untuk menonton</div>
-</div>
-</a><a class="card" href="https://cdn2.videy.co/ssd4keuh1.mp4" target="_blank">
-<div class="thumb">
-<div class="play"></div>
-<div class="vlogo">V</div>
-</div>
-<div class="info">
-<div class="title">Video 8</div>
-<div class="meta">Tap untuk menonton</div>
-</div>
-</a></div><div class="footer">
-© V Video Hub
-</div></body>
-                    </html>
+document
+  .getElementById("playerModal")
+  .addEventListener("click", function(e) {
+
+    if (e.target === this) {
+
+      closePlayer();
+
+    }
+
+  });
+
+
+/*
+=========================================================
+INIT
+=========================================================
+*/
+
+renderVideos();
+
+lucide.createIcons();
+
+</script>
+
+</body>
+</html>
